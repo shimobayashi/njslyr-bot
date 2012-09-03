@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 
+require 'kconv'
+
 require 'rubygems'
 require 'mechanize'
-require 'kconv'
 
 class Crawler
   def initialize

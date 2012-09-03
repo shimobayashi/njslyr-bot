@@ -1,0 +1,3 @@
+[submodule "mecab-ruby-gem"]
+	path = mecab-ruby-gem
+	url = https://github.com/tomity/mecab-ruby-gem.git
