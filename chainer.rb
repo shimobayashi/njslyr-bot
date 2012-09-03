@@ -26,11 +26,11 @@ class Chainer
     end
   end
 
-  def chainWithScoring(sample = 5)
+  def chainWithScoring(sample = 100)
     tmp = []
     sample.times do
       res = chain
-      retry unless validate(res[:out])
+      redo unless validate(res[:out])
       tmp << res
     end
 
