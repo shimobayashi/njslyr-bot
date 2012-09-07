@@ -12,7 +12,7 @@ class Scorer
     count = 0
     scores = {}
     parsed.each do |str|
-      if count < parsed.size * 0.1
+      if count < parsed.size * 0.01
         scores[str] = 50 unless scores.has_key?(str)
       else
         scores[str] = 0 unless scores.has_key?(str)

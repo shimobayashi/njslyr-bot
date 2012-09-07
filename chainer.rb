@@ -26,7 +26,7 @@ class Chainer
     end
   end
 
-  def chainWithScoring(sample = 100)
+  def chainWithScoring(sample = 10)
     tmp = []
     sample.times do
       res = chain
@@ -83,6 +83,9 @@ class Chainer
     flag &= !str.include?('#')
     flag &= !str.include?('http://')
     flag &= !str[1..-1].include?('@')
+    flag &= !str.split(//u).include?('◆')
+    flag &= !str.split(//u).include?('◇')
+    flag &= !str.split(//u).include?('■')
     flag &= str.split(//u).size < 140
     flag
   end

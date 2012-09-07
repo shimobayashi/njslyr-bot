@@ -13,7 +13,6 @@ class Parser
       [f, File::stat(dirname + f).mtime]
     end
     files.sort!{|a, b| a[1] <=> b[1]}.map!{|a| a[0]}
-    files.sort.reverse!
     files.each do |filename|
       next if File::directory?(dirname + filename)
       parsed += parseFile(dirname + filename)
