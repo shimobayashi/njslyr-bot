@@ -14,6 +14,7 @@ class Crawler
     `rm -f #{outDir}*.txt`
 
     for page in 1..10
+      ttl = 8
       begin
         @agent.get "http://favotter.net/user/NJSLYR?mode=new&threshold=5&page=#{page}"
         @agent.page.search('div[@class="info"]').each do |t|
@@ -23,12 +24,15 @@ class Crawler
         end
       rescue
         p $!
+        ttl -= 1
+        next if ttl <= 0
         retry
       end
     end
     puts 'done'
 
     for page in 1..10
+      ttl = 8
       begin
         @agent.get "http://favotter.net/user/NJSLYR&mode=best&page=#{page}"
         @agent.page.search('div[@class="info"]').each do |t|
@@ -37,6 +41,8 @@ class Crawler
         end
       rescue
         p $!
+        ttl -= 1
+        next if ttl <= 0
         retry
       end
     end
@@ -44,6 +50,7 @@ class Crawler
   end
 
   def fetch(id, url, outDir)
+    ttl = 8
     begin
       @agent.get url
       @agent.page.search('//p[contains(@class, "tweet-text")]').each do |t|
@@ -58,7 +65,8 @@ class Crawler
       end
     rescue
       p $!
-      retry
+      ttl -= 1
+      retry unless ttl <= 0
     end
   end
 end
